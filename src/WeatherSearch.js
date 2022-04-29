@@ -4,6 +4,7 @@ import FormattedDate from "./FormattedDate";
 import TempConversion from "./TempConversion";
 
 export default function WeatherSearch() {
+  const [city, setCity] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState({});
 
@@ -18,6 +19,17 @@ export default function WeatherSearch() {
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       description: response.data.weather[0].description,
     });
+  }
+
+  function search() {
+    let city = "London";
+    const apiKey = "021be1bf6bbbf0a54cf5f03d5e6f32ee";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(url).then(showWeather);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
   }
   function updateCity(event) {
     setCity(event.target.value);
@@ -60,10 +72,6 @@ export default function WeatherSearch() {
       </div>
     );
   } else {
-    let city = "London";
-    const apiKey = "021be1bf6bbbf0a54cf5f03d5e6f32ee";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(url).then(showWeather);
     return form;
   }
 }
