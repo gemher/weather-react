@@ -29,7 +29,7 @@ export default function WeatherSearch() {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    search();
+    search(city);
   }
   function updateCity(event) {
     setCity(event.target.value);
