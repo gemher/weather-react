@@ -4,13 +4,12 @@ import FormattedDate from "./FormattedDate";
 import TempConversion from "./TempConversion";
 
 export default function WeatherSearch() {
-  const [city, setCity] = useState("");
-  const [loaded, setLoaded] = useState(false);
-  const [weather, setWeather] = useState({});
+  const [city, setCity] = useState("Barcelona");
+  const [weather, setWeather] = useState({ loaded: false });
 
   function showWeather(response) {
-    setLoaded(true);
     setWeather({
+      loaded: true,
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
@@ -22,7 +21,6 @@ export default function WeatherSearch() {
   }
 
   function search() {
-    let city = "London";
     const apiKey = "021be1bf6bbbf0a54cf5f03d5e6f32ee";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showWeather);
@@ -48,7 +46,7 @@ export default function WeatherSearch() {
     </form>
   );
 
-  if (loaded) {
+  if (weather.loaded) {
     return (
       <div>
         {form}
@@ -66,12 +64,13 @@ export default function WeatherSearch() {
             <strong>Humidity:</strong> {weather.humidity}%
           </li>
           <li>
-            <strong>Winds:</strong> {weather.wind}km/h
+            <strong>Winds:</strong> {Math.round(weather.wind)}km/h
           </li>
         </ul>
       </div>
     );
   } else {
+    search();
     return form;
   }
 }
