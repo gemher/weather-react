@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormattedDate from "./FormattedDate";
+import WeatherForecast from "./WeatherForecast";
 import TempConversion from "./TempConversion";
+import FormattedDate from "./FormattedDate";
 
 export default function WeatherSearch() {
   const [city, setCity] = useState("Barcelona");
@@ -67,6 +68,7 @@ export default function WeatherSearch() {
             <strong>Winds:</strong> {Math.round(weather.wind)}km/h
           </li>
         </ul>
+        <WeatherForecast />
       </div>
     );
   } else {
