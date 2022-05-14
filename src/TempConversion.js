@@ -15,23 +15,23 @@ export default function TempConversion(props) {
   }
   if (unit === "celsius") {
     return (
-      <li className="degrees">
+      <div className="degrees">
         {Math.round(props.celsius)}
         °C |{" "}
         <a href="/" onClick={showFahrenheit}>
           °F
         </a>
-      </li>
+      </div>
     );
   } else {
     return (
-      <li className="degrees">
+      <div className="degrees">
         {Math.round(fahrenheit())}
         <a href="/" onClick={showCelsius}>
           °C
         </a>{" "}
         | °F
-      </li>
+      </div>
     );
   }
 }

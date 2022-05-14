@@ -52,24 +52,28 @@ export default function WeatherSearch() {
     return (
       <div>
         {form}
-        <h3 className="city-Found">
-          <strong>Conditions found for: </strong>
-          <br />
-          {weather.city}
-          <FormattedDate date={weather.date} />
-        </h3>
-        <ul className="Attributes">
-          <TempConversion celsius={weather.temperature} />
-          <img src={weather.icon} alt={weather.description} />
-          <li>{weather.description}</li>
-          <li>
-            <strong>Humidity:</strong> {weather.humidity}%
-          </li>
-          <li>
-            <strong>Winds:</strong> {Math.round(weather.wind)}km/h
-          </li>
-        </ul>
-        <WeatherForecast coordinates={weather.coordinates} />
+        <div className="row">
+          <div className="col-6">
+            <h3 className="city-Found">
+              {weather.city}
+              <FormattedDate date={weather.date} />
+              <TempConversion celsius={weather.temperature} />
+            </h3>
+          </div>
+          <div className="col-6">
+            <ul className="Attributes">
+              <img src={weather.icon} alt={weather.description} />
+              <li>{weather.description}</li>
+              <li>
+                <strong>Humidity:</strong> {weather.humidity}%
+              </li>
+              <li>
+                <strong>Winds:</strong> {Math.round(weather.wind)}km/h
+              </li>
+            </ul>
+          </div>
+          <WeatherForecast coordinates={weather.coordinates} />
+        </div>
       </div>
     );
   } else {
