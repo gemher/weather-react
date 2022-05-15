@@ -3,6 +3,7 @@ import axios from "axios";
 import WeatherForecast from "./WeatherForecast";
 import TempConversion from "./TempConversion";
 import FormattedDate from "./FormattedDate";
+import WeatherIcons from "./WeatherIcons";
 
 export default function WeatherSearch() {
   const [city, setCity] = useState("Barcelona");
@@ -17,7 +18,7 @@ export default function WeatherSearch() {
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
       description: response.data.weather[0].description,
     });
   }
@@ -52,25 +53,27 @@ export default function WeatherSearch() {
     return (
       <div>
         {form}
-        <div className="row">
-          <div className="col-6">
-            <h3 className="city-Found">
-              {weather.city}
-              <FormattedDate date={weather.date} />
-              <TempConversion celsius={weather.temperature} />
-            </h3>
-          </div>
-          <div className="col-6">
-            <ul className="Attributes">
-              <img src={weather.icon} alt={weather.description} />
-              <li>{weather.description}</li>
-              <li>
-                <strong>Humidity:</strong> {weather.humidity}%
-              </li>
-              <li>
-                <strong>Winds:</strong> {Math.round(weather.wind)}km/h
-              </li>
-            </ul>
+        <div className="container">
+          <div className="row">
+            <div className="col-6">
+              <h1 className="city-Found">
+                {weather.city}
+                <TempConversion celsius={weather.temperature} />
+                <FormattedDate date={weather.date} />
+              </h1>
+            </div>
+            <div className="col-6">
+              <ul className="Attributes">
+                <WeatherIcons code={weather.icon} />
+                <li className="text-capitalize">{weather.description}</li>
+                <li>
+                  <strong>Humidity:</strong> {weather.humidity}%
+                </li>
+                <li>
+                  <strong>Winds:</strong> {Math.round(weather.wind)}km/h
+                </li>
+              </ul>
+            </div>
           </div>
           <WeatherForecast coordinates={weather.coordinates} />
         </div>
