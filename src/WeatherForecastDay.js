@@ -26,8 +26,7 @@ export default function WeatherForecastDay(props) {
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
             {day()} {maxTemp()}°/
-            {minTemp()}°{" "}
-            <WeatherIcons code={props.data.weather[0].icon} size={30} />
+            {minTemp()}° <WeatherIcons code={props.data.weather[0].icon} />
           </li>
           <li className="list-group-item">A second item</li>
           <li className="list-group-item">A third item</li>
