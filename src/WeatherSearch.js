@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherForecast from "./WeatherForecast";
-import TempConversion from "./TempConversion";
+import WeatherTemperature from "./WeatherTemperature";
 import FormattedDate from "./FormattedDate";
 import WeatherIcons from "./WeatherIcons";
 
@@ -58,7 +58,7 @@ export default function WeatherSearch() {
             <div className="col-6">
               <h1 className="city-Found">
                 {weather.city}
-                <TempConversion celsius={weather.temperature} />
+                <WeatherTemperature celsius={weather.temperature} />
                 <FormattedDate date={weather.date} />
               </h1>
             </div>
