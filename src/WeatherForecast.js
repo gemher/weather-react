@@ -31,9 +31,11 @@ export default function WeatherForecast(props) {
           {forecast.map(function (dailyForecast, index) {
             if (index < 6) {
               return (
-                <div>
-                  <WeatherForecastDay data={dailyForecast} />
-                </div>
+                <ul className="list-group list-group-flush" key={index}>
+                  <li className="list-group-item">
+                    <WeatherForecastDay data={dailyForecast} />
+                  </li>
+                </ul>
               );
             } else {
               return null;
