@@ -1,5 +1,6 @@
 import React from "react";
 import WeatherIcons from "./WeatherIcons";
+import "./WeatherForecastDay.css";
 
 export default function WeatherForecastDay(props) {
   function maxTemp() {
@@ -21,19 +22,11 @@ export default function WeatherForecastDay(props) {
   }
 
   return (
-    <div className="container">
-      <div className="card">
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            {day()} {maxTemp()}°/
-            {minTemp()}° <WeatherIcons code={props.data.weather[0].icon} />
-          </li>
-          <li className="list-group-item">A second item</li>
-          <li className="list-group-item">A third item</li>
-          <li className="list-group-item">A third item</li>
-          <li className="list-group-item">A third item</li>
-        </ul>
-      </div>
-    </div>
+    <ul className="list-group list-group-flush">
+      <li className="list-group-item">
+        {day()} {maxTemp()}°/
+        {minTemp()}° <WeatherIcons code={props.data.weather[0].icon} />
+      </li>
+    </ul>
   );
 }
