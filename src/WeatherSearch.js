@@ -56,6 +56,7 @@ export default function WeatherSearch() {
         <div className="container">
           <div className="row">
             <div className="col-6">
+              <br />
               <h1 className="city-Found">
                 {weather.city}
                 <WeatherTemperature celsius={weather.temperature} />
